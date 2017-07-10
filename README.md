@@ -1,0 +1,15 @@
+# C++ For the Win!
+
+I love C++, but the open source tooling can be a nightmare to integrate.
+This repository is my collection of tools and methodologies to implement a
+standard, robust, cross-platform development flow.
+
+* Lint / Auto-Format: [Clang Format][clangfmt]
+* Build System: [CMake][cmake]
+* Unit Test Framework: [Google Test][gtest]
+* Integrated Development Environment (IDE): [Visual Studio Code][vscode]
+
+[clangfmt]: http://clang.llvm.org/docs/ClangFormat.html
+[cmake]: https://cmake.org/
+[gtest]: https://github.com/google/googletest
+[vscode]: https://code.visualstudio.com/

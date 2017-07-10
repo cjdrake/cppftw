@@ -1,0 +1,7 @@
+//
+// VSCode project settings overrides
+//
+{
+    // Auto-format files using Clang-Format
+    "editor.formatOnSave": true
+}

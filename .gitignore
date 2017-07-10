@@ -1,0 +1,5 @@
+# Cmake build directory
+build
+
+# Temporary output from VSCode Tools extension
+.cmaketools.json
