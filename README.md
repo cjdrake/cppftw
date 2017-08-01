@@ -1,6 +1,7 @@
 # C++ For the Win!
 
 [![Build Status](https://travis-ci.org/cjdrake/cppftw.svg?branch=master)](https://travis-ci.org/cjdrake/cppftw)
+[![Build status](https://ci.appveyor.com/api/projects/status/g863jnjrhl39pq76?svg=true)](https://ci.appveyor.com/project/cjdrake/cppftw)
 
 I love C++, but the open source tooling can be a nightmare to integrate.
 This repository is my collection of tools and methodologies to implement a
