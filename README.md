@@ -11,8 +11,10 @@ standard, robust, cross-platform development flow.
 * Build System: [CMake][cmake]
 * Unit Test Framework: [Google Test][gtest]
 * Continuous Integration for Linux & macOS: [Travis CI][travis]
+* Continuous Integration for Windows: [AppVeyor][appveyor]
 * Integrated Development Environment (IDE): [Visual Studio Code][vscode]
 
+[appveyor]: https://www.appveyor.com
 [clangfmt]: http://clang.llvm.org/docs/ClangFormat.html
 [cmake]: https://cmake.org/
 [gtest]: https://github.com/google/googletest
