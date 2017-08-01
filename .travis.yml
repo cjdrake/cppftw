@@ -1,0 +1,13 @@
+# Filename: travis.yml
+
+language: cpp
+
+os:
+    - linux
+    - osx
+
+compiler:
+    - clang
+    - gcc
+
+script: ./script/travis.sh
