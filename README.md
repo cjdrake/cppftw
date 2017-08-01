@@ -9,9 +9,11 @@ standard, robust, cross-platform development flow.
 * Lint / Auto-Format: [Clang Format][clangfmt]
 * Build System: [CMake][cmake]
 * Unit Test Framework: [Google Test][gtest]
+* Continuous Integration for Linux & macOS: [Travis CI][travis]
 * Integrated Development Environment (IDE): [Visual Studio Code][vscode]
 
 [clangfmt]: http://clang.llvm.org/docs/ClangFormat.html
 [cmake]: https://cmake.org/
 [gtest]: https://github.com/google/googletest
+[travis]: https://travis-ci.org/
 [vscode]: https://code.visualstudio.com/
