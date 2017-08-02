@@ -19,12 +19,16 @@
 set -e  # errexit
 set -x  # xtrace
 
+# Print environment variables (for debug)
+printenv | sort
+
+# Generate build files
 mkdir build
 cd build
-cmake -G "Unix Makefiles" ..
+cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=ON ..
 
-# Build libraries and binaries
-make
+# Build all targets
+cmake --build .
 
-# Execute CTest tests
-make test
+# Execute unit tests
+ctest

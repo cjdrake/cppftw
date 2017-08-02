@@ -14,17 +14,27 @@
 
 cmake_minimum_required(VERSION 3.2.2)
 
+# C++ For the Win
 project(cppftw)
 
+# Project variables
 set(VERSION 0.1)
 
-enable_testing()
+# Project options
+option(ENABLE_TESTING "Enable testing" OFF)
 
+# Configure cppftw build
 file(GLOB_RECURSE srcs "src/*.cc")
-
 add_library(cppftw ${srcs})
 target_include_directories(cppftw PUBLIC include)
 target_compile_options(cppftw PUBLIC -std=c++11 -Wall)
 
-add_subdirectory(third_party/googletest)
-add_subdirectory(test)
+if (ENABLE_TESTING)
+    enable_testing()
+
+    add_subdirectory(third_party/googletest)
+    # Customize Google Test compile/link options
+    config_compiler_and_linker()
+
+    add_subdirectory(test)
+endif (ENABLE_TESTING)

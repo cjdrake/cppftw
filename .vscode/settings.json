@@ -2,6 +2,10 @@
 // VSCode project settings overrides
 //
 {
+    "cmake.configureSettings": {
+        "ENABLE_TESTING": true
+    },
+
     // Auto-format files using Clang-Format
     "editor.formatOnSave": true
 }

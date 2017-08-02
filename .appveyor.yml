@@ -8,5 +8,8 @@ image:
     - Visual Studio 2015
     - Visual Studio 2017
 
+install:
+    - git submodule update --init
+
 build_script:
     - ps: .\script\appveyor.ps1
