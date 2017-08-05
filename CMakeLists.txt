@@ -31,7 +31,7 @@ target_include_directories(cppftw PUBLIC include)
 #     -std=c++11    Use the 2011 ISO C++ standard
 #     -Wall         Enable all warnings
 #     -Werror       Make all warnings into errors (Clang & GCC)
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+if (${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
     target_compile_options(cppftw PUBLIC -std=c++11 -Wall -Werror)
 elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
     target_compile_options(cppftw PUBLIC -std=c++11 -Wall -Werror)
