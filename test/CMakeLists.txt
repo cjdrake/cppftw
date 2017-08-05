@@ -16,4 +16,45 @@ file(GLOB srcs "*.cc")
 add_executable(cppftw_test ${srcs})
 target_link_libraries(cppftw_test cppftw gtest)
 
+if (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+    if (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
+        message(FATAL_ERROR "Expected compiler to be GNU, got ${CMAKE_CXX_COMPILER_ID}")
+    endif ()
+
+    find_program(lcov lcov)
+    if (NOT lcov)
+        message(FATAL_ERROR "Could not find program: lcov")
+    endif()
+
+    find_program(genhtml genhtml)
+    if (NOT genhtml)
+        message(FATAL_ERROR "Could not find program: genhtml")
+    endif()
+
+    target_compile_options(cppftw PUBLIC --coverage -fprofile-arcs -ftest-coverage)
+    target_link_libraries(cppftw_test gcov)
+
+    add_custom_target(
+        cppftw_cover
+
+        # Reset coverage counters
+        COMMAND ${lcov} --directory . --zerocounters
+
+        # Run unit test suite
+        COMMAND cppftw_test
+
+        # Capture lcov counters
+        COMMAND ${lcov} -o cppftw_test.dirty.info --directory . --capture
+        # Remove unwanted code from coverage database
+        COMMAND ${lcov} -o cppftw_test.info --remove cppftw_test.dirty.info '/usr/*' 'test/*' 'third_party/*'
+        # Generate HTML report
+        COMMAND ${genhtml} -o html cppftw_test.info
+
+        COMMENT "Coverage Report: ${CMAKE_BINARY_DIR}/html/index.html"
+
+        DEPENDS cppftw_test
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+endif (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+
 add_test(cppftw_test cppftw_test)

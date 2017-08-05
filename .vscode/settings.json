@@ -3,9 +3,9 @@
 //
 {
     "cmake.configureSettings": {
+        "ENABLE_COVERAGE": true,
         "ENABLE_TESTING": true
     },
-
     // Auto-format files using Clang-Format
     "editor.formatOnSave": true
 }

@@ -10,7 +10,7 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.cmake_minimum_required(VERSION 3.8.2)
+# limitations under the License.
 
 cmake_minimum_required(VERSION 3.2.2)
 
@@ -21,6 +21,7 @@ project(cppftw)
 set(VERSION 0.1)
 
 # Project options
+option(ENABLE_COVERAGE "Enable test coverage" OFF)
 option(ENABLE_TESTING "Enable testing" OFF)
 
 # Configure cppftw build
@@ -47,6 +48,7 @@ if (ENABLE_TESTING)
     # Include Google Test (https://github.com/google/googletest),
     # a high quality, popular C++ unit test framework.
     add_subdirectory(third_party/googletest)
+
     # Customize Google Test compile/link options.
     # Without this, you will get link errors on Windows.
     config_compiler_and_linker()

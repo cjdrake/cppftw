@@ -7,16 +7,18 @@ I love C++, but the open source tooling can be a nightmare to integrate.
 This repository is my collection of tools and methodologies to implement a
 standard, robust, cross-platform development flow.
 
+* Integrated Development Environment (IDE): [Visual Studio Code][vscode]
 * Lint / Auto-Format: [Clang Format][clangfmt]
 * Build System: [CMake][cmake]
 * Unit Test Framework: [Google Test][gtest]
+* Code Coverage: [Gcov][gcov]
 * Continuous Integration for Linux & macOS: [Travis CI][travis]
 * Continuous Integration for Windows: [AppVeyor][appveyor]
-* Integrated Development Environment (IDE): [Visual Studio Code][vscode]
 
 [appveyor]: https://www.appveyor.com
 [clangfmt]: http://clang.llvm.org/docs/ClangFormat.html
 [cmake]: https://cmake.org/
+[gcov]: https://gcc.gnu.org/onlinedocs/gcc/Gcov.html
 [gtest]: https://github.com/google/googletest
 [travis]: https://travis-ci.org/
 [vscode]: https://code.visualstudio.com/
