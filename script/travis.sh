@@ -25,7 +25,7 @@ printenv | sort
 # Generate build files
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTING=ON ..
+cmake -DCMAKE_BUILD_TYPE="$CONFIGURATION" -DENABLE_TESTING=ON ..
 
 # Build all targets
 cmake --build .
