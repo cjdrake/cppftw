@@ -13,7 +13,6 @@
 # limitations under the License.
 
 file(GLOB srcs "*.cc")
-
 add_executable(cppftw_test ${srcs})
 target_link_libraries(cppftw_test cppftw gtest)
 

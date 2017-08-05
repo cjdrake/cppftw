@@ -27,14 +27,22 @@ option(ENABLE_TESTING "Enable testing" OFF)
 file(GLOB_RECURSE srcs "src/*.cc")
 add_library(cppftw ${srcs})
 target_include_directories(cppftw PUBLIC include)
-target_compile_options(cppftw PUBLIC -std=c++11 -Wall)
+# C++ compiler options:
+#     -std=c++11    Use the 2011 ISO C++ standard
+#     -Wall         Enable all warnings
+#     -Werror       Make all warnings into errors
+target_compile_options(cppftw PUBLIC -std=c++11 -Wall -Werror)
 
 if (ENABLE_TESTING)
     enable_testing()
 
+    # Include Google Test (https://github.com/google/googletest),
+    # a high quality, popular C++ unit test framework.
     add_subdirectory(third_party/googletest)
-    # Customize Google Test compile/link options
+    # Customize Google Test compile/link options.
+    # Without this, you will get link errors on Windows.
     config_compiler_and_linker()
 
+    # Include cppftw unit tests
     add_subdirectory(test)
 endif (ENABLE_TESTING)
