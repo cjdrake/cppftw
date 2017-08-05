@@ -30,8 +30,16 @@ target_include_directories(cppftw PUBLIC include)
 # C++ compiler options:
 #     -std=c++11    Use the 2011 ISO C++ standard
 #     -Wall         Enable all warnings
-#     -Werror       Make all warnings into errors
-target_compile_options(cppftw PUBLIC -std=c++11 -Wall -Werror)
+#     -Werror       Make all warnings into errors (Clang & GCC)
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+    target_compile_options(cppftw PUBLIC -std=c++11 -Wall -Werror)
+elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
+    target_compile_options(cppftw PUBLIC -std=c++11 -Wall -Werror)
+elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+    target_compile_options(cppftw PUBLIC /std:c++11 /Wall)
+else ()
+    message(FATAL_ERROR "Expected compiler to be Clang, GCC, or MS Visual Studio")
+endif ()
 
 if (ENABLE_TESTING)
     enable_testing()
