@@ -44,11 +44,11 @@ if (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
         COMMAND cppftw_test
 
         # Capture lcov counters
-        COMMAND ${lcov} -o cppftw_test.dirty.info --directory . --capture
+        COMMAND ${lcov} -o coverage.info --directory . --capture
         # Remove unwanted code from coverage database
-        COMMAND ${lcov} -o cppftw_test.info --remove cppftw_test.dirty.info '/usr/*' 'test/*' 'third_party/*'
+        COMMAND ${lcov} -o coverage.info --remove coverage.info '/usr/*' 'test/*' 'third_party/*'
         # Generate HTML report
-        COMMAND ${genhtml} -o html cppftw_test.info
+        COMMAND ${genhtml} -o html coverage.info
 
         COMMENT "Coverage Report: ${CMAKE_BINARY_DIR}/html/index.html"
 
