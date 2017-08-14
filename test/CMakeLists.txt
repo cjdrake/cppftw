@@ -16,9 +16,14 @@ file(GLOB srcs "*.cc")
 add_executable(cppftw_test ${srcs})
 target_link_libraries(cppftw_test cppftw gtest)
 
-if (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+# Enable code coverage
+if (ENABLE_COVERAGE)
+    if (NOT ${CMAKE_BUILD_TYPE} STREQUAL Debug)
+        message(FATAL_ERROR "Coverage can only be enabled in Debug configuration")
+    endif ()
+
     if (NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
-        message(FATAL_ERROR "Expected compiler to be GNU, got ${CMAKE_CXX_COMPILER_ID}")
+        message(FATAL_ERROR "Coverage currently only works with GNU GCC")
     endif ()
 
     find_program(lcov lcov)
@@ -35,7 +40,7 @@ if (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_link_libraries(cppftw_test gcov)
 
     add_custom_target(
-        cppftw_cover
+        cover
 
         # Reset coverage counters
         COMMAND ${lcov} --directory . --zerocounters
@@ -44,7 +49,7 @@ if (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
         COMMAND cppftw_test
 
         # Capture lcov counters
-        COMMAND ${lcov} -o coverage.info --directory . --capture
+        COMMAND ${lcov} -o coverage.info --capture --directory .
         # Remove unwanted code from coverage database
         COMMAND ${lcov} -o coverage.info --remove coverage.info '/usr/*' 'test/*' 'third_party/*'
         # Generate HTML report
@@ -55,6 +60,6 @@ if (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
         DEPENDS cppftw_test
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
-endif (ENABLE_COVERAGE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+endif (ENABLE_COVERAGE)
 
 add_test(cppftw_test cppftw_test)

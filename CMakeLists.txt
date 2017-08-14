@@ -39,9 +39,10 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
 elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
     target_compile_options(cppftw PUBLIC /std:c++11 /Wall)
 else ()
-    message(FATAL_ERROR "Expected compiler to be Clang, GCC, or MS Visual Studio")
+    message(FATAL_ERROR "Expected compiler to be Clang, GNU, or MSVC. Got ${CMAKE_CXX_COMPILER_ID}")
 endif ()
 
+# Enable unit testing
 if (ENABLE_TESTING)
     enable_testing()
 

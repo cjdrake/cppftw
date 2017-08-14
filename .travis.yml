@@ -20,13 +20,30 @@ os:
     - linux
     - osx
 
+addons:
+    apt:
+        packages:
+            - lcov
+
 compiler:
     - clang
     - gcc
 
 env:
+    global:
+        - ENABLE_COVERAGE=OFF
     matrix:
         - CONFIGURATION=Debug
         - CONFIGURATION=Release
 
+matrix:
+    include:
+        - os: linux
+          compiler: gcc
+          env:
+              - CONFIGURATION=Debug
+              - ENABLE_COVERAGE=ON
+
 script: ./script/travis.sh
+
+after_success: ./script/codecov.sh

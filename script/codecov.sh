@@ -14,25 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Execute test suite on Travis-CI
+# Upload code coverage to codecov.io
 
-set -e  # errexit
-set -x  # xtrace
-
-# Print environment variables (for debug)
-printenv | sort
-
-# Generate build files
-mkdir build
-cd build
-cmake \
-    -DCMAKE_BUILD_TYPE="$CONFIGURATION" \
-    -DENABLE_TESTING=ON \
-    -DENABLE_COVERAGE="$ENABLE_COVERAGE" \
-    ..
-
-# Build all targets
-cmake --build . --target all
-
-# Execute unit tests
-ctest
+if [ "$ENABLE_COVERAGE" == "ON" ]; then
+    cd build
+    cmake --build . --target cover
+    bash <(curl -s https://codecov.io/bash) || echo "Code coverage upload failed!"
+fi
