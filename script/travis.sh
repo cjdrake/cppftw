@@ -28,7 +28,7 @@ cd build
 cmake -DCMAKE_BUILD_TYPE="$CONFIGURATION" -DENABLE_TESTING=ON ..
 
 # Build all targets
-cmake --build .
+cmake --build . --target all
 
 # Execute unit tests
 ctest
