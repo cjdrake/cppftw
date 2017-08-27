@@ -12,38 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Reference: https://docs.travis-ci.com/user/customizing-the-build
+# Reference: https://docs.codecov.io/docs/codecov-yaml
 
-language: cpp
-
-os:
-    - linux
-    - osx
-
-addons:
-    apt:
-        packages:
-            - lcov
-
-compiler:
-    - clang
-    - gcc
-
-env:
-    global:
-        - ENABLE_COVERAGE=OFF
-    matrix:
-        - CONFIGURATION=Debug
-        - CONFIGURATION=Release
-
-matrix:
-    include:
-        - os: linux
-          compiler: gcc
-          env:
-              - CONFIGURATION=Debug
-              - ENABLE_COVERAGE=ON
-
-script: ./script/travis.sh
-
-after_success: ./script/codecov.sh
+# Ignore coverage from unit test code
+ignore:
+    - test
