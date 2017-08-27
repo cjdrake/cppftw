@@ -14,6 +14,4 @@
 
 # Reference: https://docs.codecov.io/docs/codecov-yaml
 
-# Ignore coverage from unit test code
-ignore:
-    - test
+# TODO(cjdrake): Figure out how this thing works
