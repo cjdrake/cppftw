@@ -26,13 +26,13 @@ if (ENABLE_COVERAGE)
         message(FATAL_ERROR "Coverage currently only works with GNU GCC")
     endif ()
 
-    find_program(lcov lcov)
-    if (NOT lcov)
+    find_program(lcov_path lcov)
+    if (NOT lcov_path)
         message(FATAL_ERROR "Could not find program: lcov")
     endif()
 
-    find_program(genhtml genhtml)
-    if (NOT genhtml)
+    find_program(genhtml_path genhtml)
+    if (NOT genhtml_path)
         message(FATAL_ERROR "Could not find program: genhtml")
     endif()
 
@@ -43,17 +43,17 @@ if (ENABLE_COVERAGE)
         cover
 
         # Reset coverage counters
-        COMMAND ${lcov} --directory . --zerocounters
+        COMMAND ${lcov_path} --directory . --zerocounters
 
         # Run unit test suite
         COMMAND cppftw_test
 
         # Capture lcov counters
-        COMMAND ${lcov} -o coverage.info --capture --directory .
+        COMMAND ${lcov_path} -o coverage.info --capture --directory .
         # Remove unwanted code from coverage database
-        COMMAND ${lcov} -o coverage.info --remove coverage.info '/usr/*' 'test/*' 'third_party/*'
+        COMMAND ${lcov_path} -o coverage.info --remove coverage.info '/usr/*' 'test/*' 'third_party/*'
         # Generate HTML report
-        COMMAND ${genhtml} -o html coverage.info
+        COMMAND ${genhtml_path} -o html coverage.info
 
         COMMENT "Coverage Report: ${CMAKE_BINARY_DIR}/html/index.html"
 
